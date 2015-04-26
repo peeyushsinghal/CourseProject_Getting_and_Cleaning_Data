@@ -1,45 +1,26 @@
 ---
-title: 'Code Book : Getting and Cleaning Data : Course Project'
+title: "Read Me file for Getting and Cleaning Data Course Project"
 author: "Peeyush Singhal"
 date: "Sunday, April 26, 2015"
 output: html_document
 ---
-## Introduction
-This is a code book that describes the variables, the data, and any transformations or work that was performed to clean up the data.
 
-## Original Data Information
-The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
 
-The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain. See 'features_info.txt' for more details. 
+## Overview
 
-Data Souce : https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
+This project serves to demonstrate the collection and cleaning of a tidy data set that can be used for subsequent analysis. A full description of the data used in this project can be found at The UCI Machine Learning Repository
 
-## Variables & Data
 
-- Training data variables (y= activity, x = feature): xtrain, ytrain
+## Project Summary
+Creates one R script called run_analysis.R that does the following. 
 
-- Test data variable (y= activity, x = feature): xtest, ytest 
+1. Merges the training and the test sets to create one data set.
+2. Extracts only the measurements on the mean and standard deviation for each measurement. 
+3. Uses descriptive activity names to name the activities in the data set
+4. Appropriately labels the data set with descriptive variable names. 
+5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-- Subject Data (test and train): subjecttest, subjecttrain
 
-- Joining training and test data (y = activity, x = feature): xdata, ydata, subjectdata 
+## Additional Information
 
-- names of columns for features, other than activity and subject are understood as xdatanames
-
-- Data is the combined data set
-
-- subset_Data is the data with only the required columns (mean, standard deviation)
-
-- data_average is the data with average value of all the columns for each subject
-
-## Transformations
-
-- 1. Merging the training and the test sets to create one data set : All the test and training data was row binded for activity, feature and subject. Then this data (ydata,subjectdata,xdata) was column binded to arrive at the data. Column names were understood from feature info for the data.
-
-- 2. Extracts only the measurements on the mean and standard deviation for each measurement : mean and std. deviation was grepped from the column names, then only those columns were picked from the "Data", this created subset_Data
-
-- 3.Uses descriptive activity names to name the activities in the data set: activity names were understood from activity_labels.txt file as was assigned to acitvity data (ydata)
-
-- 4.Appropriately labels the data set with descriptive variable names: Name transformation was applied so that the column names are descriptive in nature
-
-- 5.From the data set in step 4, it creates a second, independent tidy data set with the average of each variable for each activity and each subject: data_average.txt was created after taking average of each variable (except subject and activity) by applying ddply (package = plyr) and using write.table()
+You can find additional information about the variables, data and transformations in the CodeBook.MD file.
